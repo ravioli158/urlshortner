@@ -9,10 +9,7 @@ const router = createBrowserRouter(
       path: "/contact",
       element: <Contact />,
     },
-  ],
-  {
-    basename: { path },
-  }
+  ]
 );
 
 export default router;
