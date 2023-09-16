@@ -1,6 +1,4 @@
 {
-  "homepage": "http://ravioli158.github.io/urlshortner", 
-  "name": "urlshortner",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
