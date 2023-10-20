@@ -6,22 +6,29 @@ const initialState = {
   error: null,
 };
 // API base Url
-const apiUrl = "https://api.shrtco.de/v2/shorten";
+const apiUrl = "https://t.ly/api/v1/link/shorten";
+const token = process.env.REACT_APP_APIKEY;
 
 export const shortenUrl = createAsyncThunk(
   "urls/shortenUrl",
   async (url, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${apiUrl}?url=${url}`);
-      console.log(response.data.ok);
-      if (response.data.ok) return response.data.result;
+      const headers = {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      };
+      const data = {
+        long_url: url,
+      };
+      const response = await axios.post(apiUrl, data, { headers });
+      if (response.status === 200) return response.data;
       else {
         console.log("error", response.data.error);
         return rejectWithValue(response.data.error);
       }
     } catch (error) {
-      console.log("error", error.response.data.error);
-      return rejectWithValue(error.response.data.error);
+      console.log("error", error.message);
+      return rejectWithValue(error.message);
     }
   }
 );

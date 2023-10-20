@@ -6,7 +6,7 @@ const URLList = () => {
   return (
     <div className="mt-4  [&>*:not(:first-child)]:my-3">
       {shortUrls.map((shortUrl, index) => (
-      <ShortLinkItem key={shortUrl.code} shortUrl={shortUrl} />
+      <ShortLinkItem key={shortUrl.short_id} shortUrl={shortUrl} />
       ))}
     </div>
   );
